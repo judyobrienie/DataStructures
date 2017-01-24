@@ -10,12 +10,12 @@ import java.util.Stack;
 public class convertToPostfix {
 	public static void main (String[] args){
 
-		System.out.println(convertToPostfix("A*B-(C+D)+E"));
-		System.out.println(convertToPostfix("A+B*C"));
-		System.out.println(convertToPostfix("x ^ y / (5 * z) + 10")); 
-		System.out.println(convertToPostfix("A+B*C"));
-		System.out.println(convertToPostfix("a+b*c-d"));
-		System.out.println(convertToPostfix("1+2*3-4"));
+		System.out.println(convertPostfix("A*B-(C+D)+E"));
+		System.out.println(convertPostfix("A+B*C"));
+		System.out.println(convertPostfix("x ^ y / (5 * z) + 10")); 
+		System.out.println(convertPostfix("A+B*C"));
+		System.out.println(convertPostfix("a+b*c-d"));
+		System.out.println(convertPostfix("1+2*3-4"));
 		
 	}	
 
@@ -24,7 +24,7 @@ public class convertToPostfix {
 	//Algorithm convertToPostfix (infix)
 	// Converts an infix expression to an equivalent postfix expression.
 
-	public static String convertToPostfix(String infix){
+	public static String convertPostfix(String infix){
 
 		Stack<Character> stack = new Stack<Character>();
 
