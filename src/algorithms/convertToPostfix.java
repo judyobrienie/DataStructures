@@ -15,7 +15,7 @@ public class convertToPostfix {
 		System.out.println(convertPostfix("x ^ y / (5 * z) + 10")); 
 		System.out.println(convertPostfix("A+B*C"));
 		System.out.println(convertPostfix("a+b*c-d"));
-		System.out.println(convertPostfix("1+2*3-4"));
+		System.out.println(convertPostfix("1+2"));
 		
 	}	
 
@@ -26,7 +26,7 @@ public class convertToPostfix {
 
 	public static String convertPostfix(String infix){
 
-		Stack<Character> stack = new Stack<Character>();
+		Stack<Character> operatorStack = new Stack<Character>();
 
 		StringBuffer postfix = new StringBuffer();
 
@@ -35,7 +35,7 @@ public class convertToPostfix {
 			char c = infix.charAt(i);
 				
 			if(Character.isLetterOrDigit(c))
-				postfix.append(c);
+				postfix.append(c + " " );
 					
 			else
 			{
@@ -43,32 +43,33 @@ public class convertToPostfix {
 
 				{
 				case '^':
-					stack.push (c);
+					operatorStack.push (c);
 					break;
 				case '+':
 				case '-':
 				case '*':
 				case '/':
-					while (!stack.isEmpty () &&
-							getPrecedence(c) <= getPrecedence(stack.peek()))
+					while (!operatorStack.isEmpty () &&
+							getPrecedence(c) <= getPrecedence(operatorStack.peek()))
 					{
-						postfix.append(stack.peek());
-						stack.pop();
+						postfix.append(operatorStack.peek() + " ");
+						operatorStack.pop();
 						
 					}
-					stack.push (c);
+					operatorStack.push (c);
 					break;
 
 				case '(':
-					stack.push (c);
+					operatorStack.push (c);
 					break;
 
 				case ')':  // stack is not empty if infix expression is valid
-					topOperator = stack.pop();
+					topOperator = operatorStack.pop();
 					while (topOperator != '(')
 					{
-						postfix.append(topOperator);
-						topOperator = stack.pop();
+						postfix.append(topOperator + " ");
+						topOperator = operatorStack.pop();
+						
 					}
 					break;
 				default:
@@ -76,10 +77,11 @@ public class convertToPostfix {
 				}
 			}
 		}
-			while (!stack.isEmpty())
+			while (!operatorStack.isEmpty())
 			{
-				topOperator = stack.pop();
-				postfix.append(topOperator);
+				topOperator = operatorStack.pop();
+				postfix.append(topOperator + " ");
+				
 			}
 			return postfix.toString();
 

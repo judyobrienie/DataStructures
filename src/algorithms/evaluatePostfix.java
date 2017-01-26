@@ -15,17 +15,18 @@ public class evaluatePostfix {
     
     
     
-    public static int postfixEvaluate(String postfix) {
-	 	Stack<Integer> stack = new Stack<Integer> ();
+    @SuppressWarnings("resource")
+	public static int postfixEvaluate(String postfix) {
+	 	Stack<Integer> valueStack = new Stack<Integer> ();
 		
 		Scanner tokens = new Scanner(postfix);
 		
 		while (tokens.hasNext()) {
 			if (tokens.hasNextInt()) {
-				stack.push(tokens.nextInt());
+				valueStack.push(tokens.nextInt());
 			} else {
-				int operandTwo = stack.pop();
-				int operandOne = stack.pop();
+				int operandTwo = valueStack.pop();
+				int operandOne = valueStack.pop();
 				String function = tokens.next();
 				
 				 switch (function)
@@ -33,19 +34,19 @@ public class evaluatePostfix {
 				        
 				          
 				                case "+":
-				                	stack.push(operandOne + operandTwo);
+				                	valueStack.push(operandOne + operandTwo);
 				                	break;
 				                case "-":
-				                	stack.push(operandOne - operandTwo);
+				                	valueStack.push(operandOne - operandTwo);
 				                	break;
 				                case "*":
-				                	stack.push(operandOne * operandTwo);
+				                	valueStack.push(operandOne * operandTwo);
 				                	break;
 				                case "/":
-				                	stack.push(operandOne / operandTwo);
+				                	valueStack.push(operandOne / operandTwo);
 				                	break;
 				                case "^":
-				                	stack.push( (int) Math.pow(operandOne, operandTwo));
+				                	valueStack.push( (int) Math.pow(operandOne, operandTwo));
 				                
 				                   
 				                default:
@@ -56,7 +57,7 @@ public class evaluatePostfix {
 			
 			}// end of else
 		}// end of while
-		return stack.peek();
+		return valueStack.peek();
     }
 }
 
