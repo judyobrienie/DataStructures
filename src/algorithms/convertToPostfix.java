@@ -15,7 +15,7 @@ public class convertToPostfix {
 		System.out.println(convertPostfix("x ^ y / (5 * z) + 10")); 
 		System.out.println(convertPostfix("A+B*C"));
 		System.out.println(convertPostfix("a+b*c-d"));
-		System.out.println(convertPostfix("1+2"));
+		System.out.println(convertPostfix("11+2"));
 		
 	}	
 
@@ -25,19 +25,24 @@ public class convertToPostfix {
 	// Converts an infix expression to an equivalent postfix expression.
 
 	public static String convertPostfix(String infix){
-
+		
 		Stack<Character> operatorStack = new Stack<Character>();
 
 		StringBuffer postfix = new StringBuffer();
-
+		
 		Character topOperator;
+		
 		for(int i = 0; i < infix.length(); i++) {
 			char c = infix.charAt(i);
-				
-			if(Character.isLetterOrDigit(c))
-				postfix.append(c + " " );
-					
+			
+		if(Character.isLetterOrDigit(c))
+			postfix.append(c);
+		    if (i+1 >= infix.length() || !Character.isLetterOrDigit(infix.charAt(i+1)))
+                     postfix.append(" ");
+		
 			else
+				
+				
 			{
 				switch(c)
 
@@ -81,7 +86,7 @@ public class convertToPostfix {
 			{
 				topOperator = operatorStack.pop();
 				postfix.append(topOperator + " ");
-				
+			
 			}
 			return postfix.toString();
 

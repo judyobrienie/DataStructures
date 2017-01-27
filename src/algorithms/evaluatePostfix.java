@@ -7,7 +7,7 @@ public class evaluatePostfix {
 	
 	
     public static void main(String[] args) {
-        System.out.println(postfixEvaluate("1 2 +"));               // 3
+        System.out.println(postfixEvaluate("11 2 +"));               // 3
         System.out.println(postfixEvaluate("1 2 3 * + 4 +"));       // 11
         System.out.println(postfixEvaluate("4 2 ^"));                 // 16
         System.out.println(postfixEvaluate("10 2 ^"));                 // 100
@@ -23,6 +23,7 @@ public class evaluatePostfix {
 		
 		while (tokens.hasNext()) {
 			if (tokens.hasNextInt()) {
+				
 				valueStack.push(tokens.nextInt());
 			} else {
 				int operandTwo = valueStack.pop();
